@@ -16,9 +16,26 @@ function checkIfInputIsEmpty() {
   if ( !firstName || !lastName || !empId || !annualSalary ) {
     alert('please fill out all of the fields');
   } else {
-    addEmployee();
+    newEmployee(firstName, lastName, empId, annualSalary);
     // $(document).on('click', '#confirmModal', confirm);
   }
+}
+
+/**
+ * New Employee
+ * Creates a new employee object
+ */
+
+function newEmployee(firstName, lastName, empId, annualSalary) {
+  console.log('in newCar:', firstName, lastName, empId, annualSalary);
+  const newCarObject = {
+    first_name: firstName,
+    last_name: lastName,
+    employee_id: empId,
+    annual_salary: annualSalary
+  }
+  // garage.push(newCarObject);
+  return true;
 }
 
 /**
