@@ -1,4 +1,9 @@
 #input-container {
   display: flex;
   width: 45%;
+  margin: 15px;
+}
+
+#employee-table {
+  margin: 15px;
 }
