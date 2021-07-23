@@ -6,40 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="./scripts/jquery.js"></script>
   <script src="./scripts/script.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css">
+  <link rel="stylesheet" href="./style/style.css">
   <title>Document</title>
 </head>
 <body>
-  <input
-    type="text"
-    placeholder="First Name"
-    id="firstName"
-  />
+  <div id="input-container">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="First Name"
+      id="firstName"
+    />
 
-  <input
-    type="text"
-    placeholder="Last Name"
-    id="lastName"
-  />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Last Name"
+      id="lastName"
+    />
 
-  <input
-    type="text"
-    placeholder="ID"
-    id="employeeId"
-  />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="ID"
+      id="employeeId"
+    />
 
-  <input
-    type="text"
-    placeholder="Title"
-    id="employeeTitle"
-  />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Title"
+      id="employeeTitle"
+    />
 
-  <input
-    type="text"
-    placeholder="Annual Salary"
-    id="annualSalary"
-  />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Annual Salary"
+      id="annualSalary"
+    />
+    <button id="addBtn" class="btn btn-primary">Submit</button>
+  </div>
 
-  <button id="addBtn">Submit</button>
-  <table id="employee-table"></table>
+  <table id="employee-table">
+    <thead>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Annual Salary</th>
+      <th></th>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
 </body>
 </html>
