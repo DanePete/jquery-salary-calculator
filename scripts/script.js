@@ -1,20 +1,7 @@
 $(document).ready(onReady);
 
 function onReady() {
-  $(document).on('click', '#addBtn', addEmployee);
-  $(document).on('click', '#confirmModal', confirm);
-}
-
-function confirm() {
-  $('#exampleModalCenter').modal('hide');
-}
- 
-function addEmployee(event) {
-  // Stops the forms default behavior
-  // no reload
-  event.preventDefault();
-  $('#exampleModalCenter').modal();
-  checkIfInputIsEmpty();
+  $(document).on('click', '#addBtn', checkIfInputIsEmpty);
 }
 
 /**
@@ -29,26 +16,42 @@ function checkIfInputIsEmpty() {
   if ( !firstName || !lastName || !empId || !annualSalary ) {
     alert('please fill out all of the fields');
   } else {
-    if ( addEmployee( firstName, lastName, empId, annualSalary) === true ) {
-      // displayItemsInUnOrderedList( year, make, model, price, img );
-      // sumTotalPrice();
-      // clearOutFields();
-      console.log('added');
-    }
+    addEmployee();
+    // $(document).on('click', '#confirmModal', confirm);
   }
 }
+
+/**
+ * Add Employee
+ * Adds our employee
+ */
+
+ function addEmployee() {
+  $('#exampleModalCenter').modal();
+  confirm();
+}
+
+/**
+ * Cofirm Modal Function
+ * Handles closing the bootstrap modal
+ */
+
+ function confirm() {
+  $('#exampleModalCenter').modal('hide');
+}
+
+
 
 // function getFieldValues() {
 //   daEmployee = $('#empName').val();
 // }
 
-// /**
-//  * Clear out Fields
-// */
-// function emptyValues() {
-//   $('#empName').empty();
-//   $('#employeeName').empty();
-//   $('#bonusPercent').empty();
-//   $('#totalComp').empty();
-//   $('#totalBonus').empty();
-// }
+/**
+ * Clear out Fields
+*/
+function emptyValues() {
+  $('#firstName').empty();
+  $('#lastName').empty();
+  $('#employeeId').empty();
+  $('#annualSalary').empty();
+}
