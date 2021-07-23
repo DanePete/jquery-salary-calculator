@@ -2,9 +2,13 @@ $(document).ready(onReady);
 
 function onReady() {
   $(document).on('click', '#addBtn', addEmployee);
+  $(document).on('click', '#confirmModal', confirm);
 }
 
-
+function confirm() {
+  $('#exampleModalCenter').modal('hide');
+}
+ 
 function addEmployee(event) {
   // Stops the forms default behavior
   // no reload
