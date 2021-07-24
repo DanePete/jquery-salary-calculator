@@ -8,15 +8,17 @@ function onReady() {
   * Check if input is empty
 */
 function checkIfInputIsEmpty() {
+  console.log('got here');
   let firstName = $('#firstName').val();
   let lastName = $('#lastName').val();
   let empId = $('#employeeId').val();
   let annualSalary = $('#annualSalary').val();
 
   if ( !firstName || !lastName || !empId || !annualSalary ) {
-    alert('please fill out all of the fields');
+    $('.alert').alert();
   } else {
-    newEmployee(firstName, lastName, empId, annualSalary);
+    let employee = newEmployee(firstName, lastName, empId, annualSalary);
+    console.log(employee);
     // $(document).on('click', '#confirmModal', confirm);
   }
 }
@@ -27,15 +29,14 @@ function checkIfInputIsEmpty() {
  */
 
 function newEmployee(firstName, lastName, empId, annualSalary) {
-  console.log('in newCar:', firstName, lastName, empId, annualSalary);
-  const newCarObject = {
+  console.log('new employee:', firstName, lastName, empId, annualSalary);
+  const employeeObj = {
     first_name: firstName,
     last_name: lastName,
     employee_id: empId,
     annual_salary: annualSalary
   }
-  // garage.push(newCarObject);
-  return true;
+  return employeeObj;
 }
 
 /**
