@@ -12,14 +12,14 @@ function checkIfInputIsEmpty() {
   let firstName = $('#firstName').val();
   let lastName = $('#lastName').val();
   let empId = $('#employeeId').val();
-  let annualSalary = $('#annualSalary').val();
+  let empTitle = $('#employeeTitle').val();
+  let annualSalary = Number($('#annualSalary').val());
 
-  if ( !firstName || !lastName || !empId || !annualSalary ) {
+  if ( !firstName || !lastName || !empId || !empTitle || !annualSalary ) {
     $('.alert').alert();
   } else {
-    let employee = newEmployee(firstName, lastName, empId, annualSalary);
-    console.log(employee);
-    // $(document).on('click', '#confirmModal', confirm);
+    let employee = newEmployee(firstName, lastName, empId, empTitle, annualSalary);
+    appendTable(employee);
   }
 }
 
@@ -28,12 +28,12 @@ function checkIfInputIsEmpty() {
  * Creates a new employee object
  */
 
-function newEmployee(firstName, lastName, empId, annualSalary) {
-  console.log('new employee:', firstName, lastName, empId, annualSalary);
+function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
   const employeeObj = {
     first_name: firstName,
     last_name: lastName,
     employee_id: empId,
+    employee_title: empTitle,
     annual_salary: annualSalary
   }
   return employeeObj;
@@ -44,9 +44,20 @@ function newEmployee(firstName, lastName, empId, annualSalary) {
  * Adds our employee
  */
 
- function addEmployee() {
+ function appendTable(employee) {
+   console.log(employee);
   $('#exampleModalCenter').modal();
-  confirm();
+  $('#employee-table')
+    .append(`
+      <tr>
+        <td>${employee.first_name}</td>
+        <td>${employee.last_name}</td>
+        <td>${employee.employee_id}</td>
+        <td>${employee.employee_title}</td>
+        <td>${employee.annual_salary}</td>
+        <td><button id="btnDelete" class="btn btn-danger">DELETE</button></td>
+      </tr>
+    `);
 }
 
 /**
@@ -56,7 +67,9 @@ function newEmployee(firstName, lastName, empId, annualSalary) {
 
  function confirm() {
   $('#exampleModalCenter').modal('hide');
+
 }
+
 
 
 
