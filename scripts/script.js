@@ -2,6 +2,8 @@ $(document).ready(onReady);
 
 function onReady() {
   $(document).on('click', '#addBtn', checkIfInputIsEmpty);
+  $(document).on('click', '#btnDelete', removeRow);
+  $(document).on('click', "#confirmModal", confirm);
 }
 
 /**
@@ -61,12 +63,21 @@ function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
 }
 
 /**
+ * Remove Row
+ * Function removes the row when the delete button is clicked
+ */
+function removeRow() {
+  $(this).closest('tr').remove();
+  console.log($(this).closest('tr'));
+}
+
+/**
  * Cofirm Modal Function
  * Handles closing the bootstrap modal
  */
-
  function confirm() {
-  $('#exampleModalCenter').modal('hide');
+  console.log('confirmed');
+  // $('#exampleModalCenter').modal('hide');
 
 }
 
