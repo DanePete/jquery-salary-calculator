@@ -1,4 +1,5 @@
 $(document).ready(onReady);
+let employees = [];
 
 function onReady() {
   $(document).on('click', '#addBtn', checkIfInputIsEmpty);
@@ -21,7 +22,8 @@ function checkIfInputIsEmpty() {
     $('.alert').alert();
   } else {
     let employee = newEmployee(firstName, lastName, empId, empTitle, annualSalary);
-    appendTable(employee);
+    employees.push(employee);
+    appendTable();
   }
 }
 
@@ -46,20 +48,25 @@ function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
  * Adds our employee
  */
 
- function appendTable(employee) {
-   console.log(employee);
+ function appendTable() {
   $('#exampleModalCenter').modal();
-  $('#employee-table')
-    .append(`
-      <tr>
-        <td>${employee.first_name}</td>
-        <td>${employee.last_name}</td>
-        <td>${employee.employee_id}</td>
-        <td>${employee.employee_title}</td>
-        <td>${employee.annual_salary}</td>
-        <td><button id="btnDelete" class="btn btn-danger">DELETE</button></td>
-      </tr>
-    `);
+  $('#employee-table tbody').empty();
+  console.log(employees);
+  for (employeeIndex of employees) {
+    console.log(employeeIndex);
+    $('#employee-table tbody')
+      .append(`
+        <tr>
+          <td>${employeeIndex.first_name}</td>
+          <td>${employeeIndex.last_name}</td>
+          <td class='empId'>${employeeIndex.employee_id}</td>
+          <td>${employeeIndex.employee_title}</td>
+          <td id="annual-salary">${employeeIndex.annual_salary}</td>
+          <td><button id="btnDelete" class="btn btn-danger">DELETE</button></td>
+        </tr>
+      `);
+    }
+  $('.totalMonthly').text(calculateSalaries().toFixed(2));
 }
 
 /**
@@ -67,8 +74,16 @@ function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
  * Function removes the row when the delete button is clicked
  */
 function removeRow() {
-  $(this).closest('tr').remove();
-  console.log($(this).closest('tr'));
+  let trigger = $(this).closest('tr').find('.empId').text();
+  $.each(employees, function( index, value ) {
+    console.log(value.employee_id);
+    if(value.employee_id === trigger) {
+      console.log('bingo');
+      console.log('index is',index);
+      employees.splice(index, 1);
+      appendTable();
+    }
+  });
 }
 
 /**
@@ -81,12 +96,14 @@ function removeRow() {
 
 }
 
-
-
-
-// function getFieldValues() {
-//   daEmployee = $('#empName').val();
-// }
+function calculateSalaries() {
+  let total = 0;
+  for (let employee of employees) {
+      total += employee.annual_salary;
+  }
+  // console.log(total);
+  return total;
+}
 
 /**
  * Clear out Fields
