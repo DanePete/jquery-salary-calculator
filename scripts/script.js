@@ -49,8 +49,10 @@ function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
  */
 
  function appendTable() {
-  $('#exampleModalCenter').modal();
+  // $('#exampleModalCenter').modal();
   $('#employee-table tbody').empty();
+  $('.totalMonthly').removeClass('red');
+  let totalMonth = 0;
   console.log(employees);
   for (employeeIndex of employees) {
     console.log(employeeIndex);
@@ -66,7 +68,12 @@ function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
         </tr>
       `);
     }
-  $('.totalMonthly').text(calculateSalaries().toFixed(2));
+  totalMonth = (calculateSalaries().toFixed(2));
+  $('.totalMonthly').text(totalMonth);
+  if(totalMonth > 20000) {
+    console.log('yes');
+    $('.totalMonthly').addClass('red');
+  }
 }
 
 /**
@@ -101,8 +108,7 @@ function calculateSalaries() {
   for (let employee of employees) {
       total += employee.annual_salary;
   }
-  // console.log(total);
-  return total;
+  return ( total / 12); 
 }
 
 /**
