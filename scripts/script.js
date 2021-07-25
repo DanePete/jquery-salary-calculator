@@ -86,7 +86,6 @@ function appendTable() {
 function removeRow() {
   let trigger = $(this).closest('tr').find('.empId').text();
   $.each(employees, function( index, value ) {
-    console.log(value.employee_id);
     if(value.employee_id === trigger) {
       employees.splice(index, 1);
       appendTable();
