@@ -12,7 +12,6 @@ function onReady() {
   * Displays a notification to the user if all fields have NOT been filled out
 */
 function checkIfInputIsEmpty() {
-  console.log('got here');
   let firstName = $('#firstName').val();
   let lastName = $('#lastName').val();
   let empId = $('#employeeId').val();
@@ -60,9 +59,7 @@ function appendTable() {
   $('#employee-table tbody').empty();
   $('.totalMonthly').removeClass('red');
   let totalMonth = 0;
-  console.log(employees);
   for (employeeIndex of employees) {
-    console.log(employeeIndex);
     $('#employee-table tbody')
       .append(`
         <tr>
@@ -78,7 +75,6 @@ function appendTable() {
   totalMonth = (calculateTotalMonthly().toFixed(2));
   $('.totalMonthly').text(totalMonth);
   if(totalMonth > 20000) {
-    console.log('yes');
     $('.totalMonthly').addClass('red');
   }
 }
@@ -92,8 +88,6 @@ function removeRow() {
   $.each(employees, function( index, value ) {
     console.log(value.employee_id);
     if(value.employee_id === trigger) {
-      console.log('bingo');
-      console.log('index is',index);
       employees.splice(index, 1);
       appendTable();
     }
@@ -131,7 +125,6 @@ function calculateTotalMonthly() {
  * Clear out Fields
 */
 function emptyValues() {
-  console.log('got here');
   $('#firstName').val('');
   $('#lastName').val('');
   $('#employeeTitle').val('');
