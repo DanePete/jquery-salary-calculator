@@ -111,6 +111,7 @@ function confirm() {
   if ($('.alert').length ) {
     $('.alert').remove();
   }
+  emptyValues();
 }
 
 
@@ -130,8 +131,11 @@ function calculateTotalMonthly() {
  * Clear out Fields
 */
 function emptyValues() {
-  $('#firstName').empty();
-  $('#lastName').empty();
-  $('#employeeId').empty();
-  $('#annualSalary').empty();
+  console.log('got here');
+  $('#firstName').val('');
+  $('#lastName').val('');
+  $('#employeeTitle').val('');
+  $('#employeeId').val('');
+  $('#annualSalary').val('');
+  $('#firstName').focus();
 }
