@@ -1,9 +1,17 @@
-# Project Name
+# Jquery Salary Calculator
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Jquery Salary Calculator allows the end user to manage employees and calculate the total monthly cost
+The inputs:
+- First Name
+- Last Name
+- Employee Id
+- Employee Title
+- Employee Annual Salary
+
+The software solves a problem of a user having to manually calculate the monthly cost for all employees
 
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
