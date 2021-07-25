@@ -9,6 +9,7 @@ function onReady() {
 
 /**
   * Check if input is empty
+  * Displays a notification to the user if all fields have NOT been filled out
 */
 function checkIfInputIsEmpty() {
   console.log('got here');
@@ -19,11 +20,18 @@ function checkIfInputIsEmpty() {
   let annualSalary = Number($('#annualSalary').val());
 
   if ( !firstName || !lastName || !empId || !empTitle || !annualSalary ) {
-    $('.alert').alert();
+    $('body').prepend (
+    `<div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      Please fill out all of the fields
+      <img class="invert-color" src="https://static.thenounproject.com/png/2709845-200.png"></img>
+    </div>`);
   } else {
     let employee = newEmployee(firstName, lastName, empId, empTitle, annualSalary);
     employees.push(employee);
-    appendTable();
+    $('#exampleModalCenter').modal();
   }
 }
 
@@ -45,11 +53,10 @@ function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
 
 /**
  * Add Employee
- * Adds our employee
+ * Adds our employee to the Dom and sets total monthly value
  */
 
- function appendTable() {
-  // $('#exampleModalCenter').modal();
+function appendTable() {
   $('#employee-table tbody').empty();
   $('.totalMonthly').removeClass('red');
   let totalMonth = 0;
@@ -68,7 +75,7 @@ function newEmployee(firstName, lastName, empId, empTitle, annualSalary) {
         </tr>
       `);
     }
-  totalMonth = (calculateSalaries().toFixed(2));
+  totalMonth = (calculateTotalMonthly().toFixed(2));
   $('.totalMonthly').text(totalMonth);
   if(totalMonth > 20000) {
     console.log('yes');
@@ -96,14 +103,22 @@ function removeRow() {
 /**
  * Cofirm Modal Function
  * Handles closing the bootstrap modal
+ * Additionally it checks if any previous alerts are present on screen due prior user input failure, removes if found
  */
- function confirm() {
-  console.log('confirmed');
-  // $('#exampleModalCenter').modal('hide');
-
+function confirm() {
+  appendTable();
+  $('#exampleModalCenter').modal('hide');
+  if ($('.alert').length ) {
+    $('.alert').remove();
+  }
 }
 
-function calculateSalaries() {
+
+/**
+ * Calculate Salaries 
+ * Returns the calculated total Monthly
+ */
+function calculateTotalMonthly() {
   let total = 0;
   for (let employee of employees) {
       total += employee.annual_salary;
